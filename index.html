@@ -168,7 +168,8 @@
     <div class="wrap">
         <header>
             <h1>Fiche élève – Réseaux informatiques</h1>
-            <p class="lead">Après avoir téléchargé l'application FING et utilisé le tuto, répondez dans un premier temps au brouillon sur la page 5 puis répondez au propre aux questions suivantes. L’utilisation de l’application Fing est sans danger dans le cadre de l’activité proposée. Elle se limite à analyser le réseau local (par exemple l’adresse IP interne de l’ordinateur, de type 192.168.x.x), ce qui ne présente aucun risque de sécurité. Aucune donnée personnelle n’est collectée ni stockée par l’application : seules les réponses inscrites sur la fiche élève seront conservées dans le compte Pearltrees de la classe. Ces informations n’ont aucun impact sur la sécurité du réseau domestique, car elles concernent uniquement le fonctionnement interne du réseau local, et non l’adresse IP publique de la connexion Internet.</p>
+            <p class="lead">Répondez aux questions après avoir regardé une ou plusieurs fois la vidéo correspondante. Quand toutes les cellules seront complétées, vous pourrez utiliser le bouton 'Exporter en PDF' et déposer votre document dans Pearltrees.</p>
+            <p class="lead">L’utilisation de l’application Fing est sans danger dans le cadre de l’activité proposée. Elle se limite à analyser le réseau local (par exemple l’adresse IP interne de l’ordinateur), ce qui ne présente aucun risque de sécurité. Aucune donnée personnelle n’est collectée ni stockée par l’application : seules les réponses inscrites sur la fiche élève seront conservées dans votre compte Pearltrees. Ces informations n’ont aucun impact sur la sécurité du réseau domestique, car elles concernent uniquement le fonctionnement interne du réseau local, et non l’adresse IP publique de la connexion Internet.</p>
         </header>
 
         <section class="card row2">
@@ -182,7 +183,7 @@
             </div>
         </section>
         
-
+        <p class="lead">Après avoir téléchargé l'application FING et utilisé le tuto, répondez dans un premier temps au brouillon sur la page 5 puis répondez au propre aux questions suivantes.</p>
 
         <section class="card q" id="q1">
             <h3>L'application détecte combien de périphériques sur votre réseau ? <span class="points">(1 point)</span></h3>
@@ -196,7 +197,6 @@
 
         <section class="card q" id="q3">
             <h3>Complétez les informations du document suivant : <span class="points">(5 points)</span></h3>
-           
             <div class="sub-card">
                 <label for="r3-2">Adresse réseau (IP) de votre Box :</label>
                 <input type="text" id="r3-2" placeholder="Adresse IP du routeur..." />
@@ -253,7 +253,7 @@
 
     <script>
         // --- Vérification minimale ---
-        const fields = ["nom", "prenom", "r1", "r2", "r3-1", "r3-2", "r3-3", "r3-4", "r4-1", "r4-2", "r4-3", "r4-4", "r5", "r6"];
+        const fields = ["nom", "prenom", "r1", "r2", "r3-2", "r3-3", "r3-4", "r4-1", "r4-2", "r4-3", "r4-4", "r5", "r6"];
         const res = document.getElementById('resultat');
 
         function verifier() {
@@ -387,7 +387,6 @@
                 { title: 'L\'application détecte combien de périphériques sur votre réseau ?', id: 'r1' },
                 { title: 'Quelle est la particularité de toutes les adresses IP sur votre réseau ?', id: 'r2' },
                 { title: 'Complétez les informations du document suivant :', id: 'r3', subFields: [
-                    { title: 'Adresse publique de votre Box :', id: 'r3-1' },
                     { title: 'Adresse réseau (IP) de votre Box :', id: 'r3-2' },
                     { title: 'Adresse réseau de votre ordinateur :', id: 'r3-3' },
                     { title: 'Autres appareils présents sur votre réseau (au moins 3) en donnant le nom des appareils comme une console, imprimante... :', id: 'r3-4' },
@@ -435,3 +434,4 @@
     </script>
 </body>
 </html>
+
