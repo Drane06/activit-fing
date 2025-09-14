@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fiche élève – Réseaux</title>
+    <style>
+        /* Couleurs du thème console */
+        :root {
+            --ink: #FFFFFF;
+            --muted: #6B7280;
+            --line: #374151;
+            --bg: #111827;
+            --card: #1F2937;
+            --danger: #DC2626;
+            --ok: #22C55E;
+        }
+
+        /* Styles de base pour un look "terminal" */
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            color: var(--ink);
+            background: var(--bg);
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 24px auto 80px;
+            padding: 24px;
+            background-color: var(--bg);
+            border: 1px solid var(--line);
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: clamp(1.3rem, 1.1rem + 1.2vw, 1.8rem);
+        }
+
+        p.lead {
+            margin: 0 0 12px;
+            color: var(--muted);
+        }
+
+        /* Styles des cartes et des lignes */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 0;
+        }
+        
+        .sub-card {
+            background: #111827;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid var(--line);
+        }
+
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 720px) {
+            .row2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Styles des formulaires */
+        label {
+            display: block;
+            font-weight: 600;
+            margin: 4px 0 6px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            font: inherit;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            background: #111827;
+            color: var(--ink);
+            border-radius: 0;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .error {
+            border-color: var(--danger) !important;
+            outline: 2px solid rgba(220, 38, 38, .5);
+        }
+
+        /* Styles des questions */
+        .q {
+            display: grid;
+            gap: 8px;
+        }
+
+        .q h3 {
+            margin: .2rem 0;
+            font-size: 1rem;
+        }
+        
+        .q h4 {
+            margin: .2rem 0;
+            font-size: .9rem;
+            color: var(--ok);
+        }
+
+        .points {
+            color: var(--muted);
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        /* Styles des actions et boutons */
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            appearance: none;
+            border: 1px solid var(--line);
+            background: var(--card);
+            border-radius: 0;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        
+        button:hover {
+            background: var(--line);
+        }
+
+        .status {
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .ok {
+            color: var(--ok);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Fiche élève – Réseaux informatiques</h1>
+            <p class="lead">Répondez aux questions après avoir téléchargé l'application FING sur votre portable. Quand toutes les cellules seront complétées, vous pourrez utiliser le bouton 'Exporter en PDF' et déposer votre document dans Pearltrees.</p>
+        </header>
+
+        <section class="card row2">
+            <div>
+                <label for="nom">Nom</label>
+                <input id="nom" name="nom" type="text" placeholder="Nom" autocomplete="name" />
+            </div>
+            <div>
+                <label for="prenom">Prénom</label>
+                <input id="prenom" name="prenom" type="text" placeholder="Prénom" autocomplete="given-name" />
+            </div>
+        </section>
+        
+        <p class="lead">Après avoir téléchargé l'application FING et utilisé le tuto, répondez dans un premier temps au brouillon sur la page 5 puis répondez au propre aux questions suivantes. L’utilisation de l’application Fing est sans danger dans le cadre de l’activité proposée. Elle se limite à analyser le réseau local (par exemple l’adresse IP interne de l’ordinateur, de type 192.168.x.x), ce qui ne présente aucun risque de sécurité. Aucune donnée personnelle n’est collectée ni stockée par l’application : seules les réponses inscrites sur la fiche élève seront conservées dans le compte Pearltrees de la classe. Ces informations n’ont aucun impact sur la sécurité du réseau domestique, car elles concernent uniquement le fonctionnement interne du réseau local, et non l’adresse IP publique de la connexion Internet.</p>
+
+        <section class="card q" id="q1">
+            <h3>L'application détecte combien de périphériques sur votre réseau ? <span class="points">(1 point)</span></h3>
+            <textarea id="r1" placeholder="Indiquez le nombre de périphériques..."></textarea>
+        </section>
+
+        <section class="card q" id="q2">
+            <h3>Quelle est la particularité de toutes les adresses IP sur votre réseau ? <span class="points">(3 points)</span></h3>
+            <textarea id="r2" placeholder="Expliquez la particularité..."></textarea>
+        </section>
+
+        <section class="card q" id="q3">
+            <h3>Complétez les informations du document suivant : <span class="points">(5 points)</span></h3>
+           
+            <div class="sub-card">
+                <label for="r3-2">Adresse réseau (IP) de votre Box :</label>
+                <input type="text" id="r3-2" placeholder="Adresse IP du routeur..." />
+            </div>
+            <div class="sub-card">
+                <label for="r3-3">Adresse réseau de votre ordinateur :</label>
+                <input type="text" id="r3-3" placeholder="Adresse IP de votre ordinateur..." />
+            </div>
+            <div class="sub-card">
+                <label for="r3-4">Autres appareils présents sur votre réseau (au moins 3) en donnant le nom des appareils comme une console, imprimante... :</label>
+                <textarea id="r3-4" placeholder="Liste des appareils..."></textarea>
+            </div>
+        </section>
+        
+        <section class="card q" id="q4">
+            <h3>Complétez les informations concernant votre réseau wifi : <span class="points">(4 points)</span></h3>
+            <div class="sub-card">
+                <label for="r4-1">Nom de votre réseau :</label>
+                <input type="text" id="r4-1" placeholder="Nom du réseau Wi-Fi..." />
+            </div>
+            <div class="sub-card">
+                <label for="r4-2">Adresse IP :</label>
+                <input type="text" id="r4-2" placeholder="Adresse IP..." />
+            </div>
+            <div class="sub-card">
+                <label for="r4-3">Masque :</label>
+                <input type="text" id="r4-3" placeholder="Masque de sous-réseau..." />
+            </div>
+            <div class="sub-card">
+                <label for="r4-4">Routeur :</label>
+                <input type="text" id="r4-4" placeholder="Nom du routeur..." />
+            </div>
+        </section>
+
+        <section class="card q" id="q5">
+            <h3>Dans l'ordre donnez le nom et la définition de chacun des appareils, voir fiche de cours page 2. <span class="points">(5 points)</span></h3>
+            <textarea id="r5" placeholder="Noms et définitions..."></textarea>
+        </section>
+        
+        <section class="card q" id="q6">
+            <h3>Citez d'autres informations liées à votre réseau que l'application est capable de connaître : <span class="points">(2 points)</span></h3>
+            <textarea id="r6" placeholder="Autres informations..."></textarea>
+        </section>
+
+        <div class="actions">
+            <button id="verifier" type="button">Vérifier que tout est rempli</button>
+            <button id="imprimer" type="button">📄 Exporter mes réponses en PDF</button>
+            <span id="resultat" class="status" aria-live="polite"></span>
+        </div>
+    </div>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        // --- Vérification minimale ---
+        const fields = ["nom", "prenom", "r1", "r2", "r3-1", "r3-2", "r3-3", "r3-4", "r4-1", "r4-2", "r4-3", "r4-4", "r5", "r6"];
+        const res = document.getElementById('resultat');
+
+        function verifier() {
+            const manquants = [];
+            for (const id of fields) {
+                const el = document.getElementById(id);
+                const val = (el.value || '').trim();
+                if (!val) {
+                    manquants.push(labelFor(id));
+                    el.classList.add('error');
+                } else {
+                    el.classList.remove('error');
+                }
+            }
+            if (manquants.length === 0) {
+                res.textContent = 'Tout est rempli ✔';
+                res.classList.add('ok');
+            } else {
+                res.textContent = 'Champs à compléter : ' + manquants.join(', ');
+                res.classList.remove('ok');
+            }
+        }
+
+        function labelFor(id) {
+            const el = document.querySelector('label[for="' + id + '"]');
+            return el ? (el.textContent || '').trim() : id;
+        }
+
+        document.getElementById('verifier').addEventListener('click', verifier);
+
+        // --- Nettoyage texte ---
+        function sanitize(str) {
+            if (!str) return '';
+            // Remplacer tous les types d'espaces blancs, y compris les non-sécables, par un seul espace
+            str = str.replace(/[\u00A0\u202F\u2009\u2007\u2060\s]/g, ' ');
+            // Remplacer les symboles spécifiques par leurs équivalents
+            str = str.replace(/[«»]/g, '"').replace(/[–—]/g, '-');
+            // Supprimer les emojis et autres caractères spéciaux qui peuvent causer des problèmes de rendu
+            str = str.replace(/[\u{1F300}-\u{1FAFF}\u{1F1E6}-\u{1F1FF}\u2600-\u27BF]/gu, '');
+            // Réduire les espaces multiples à un seul espace et nettoyer le début/fin
+            str = str.replace(/\s{2,}/g, ' ').trim();
+            return str;
+        }
+
+        function makeQuestionTitle(raw) {
+            let s = sanitize(raw || '');
+            s = s.replace(/\([^()]*points?\)/i, '').trim(); // supprime "(x points)"
+            return `${s}`;
+        }
+        
+        function makeSubQuestionTitle(raw) {
+            let s = sanitize(raw || '');
+            return `  - ${s}`; // indentation pour les sous-questions
+        }
+
+        // --- Fonction pour écrire du texte avec retour à la ligne ---
+        function writeBlock(doc, text, x, startY, maxWidth, lineHeight, pageHeight, margin) {
+            if (!text || text.trim() === '') return startY + 4;
+
+            // Utiliser splitTextToSize pour gérer les retours à la ligne automatiques
+            const lines = doc.splitTextToSize(text, maxWidth);
+            let currentY = startY;
+
+            for (let i = 0; i < lines.length; i++) {
+                // Vérifier s'il faut une nouvelle page
+                if (currentY + lineHeight > pageHeight - margin) {
+                    doc.addPage();
+                    currentY = margin;
+                }
+                doc.text(lines[i], x, currentY);
+                currentY += lineHeight;
+            }
+
+            return currentY;
+        }
+
+        // --- Export PDF ---
+        document.getElementById('imprimer').addEventListener('click', () => {
+            // Vérifier d'abord que tous les champs sont remplis
+            const manquants = [];
+            for (const id of fields) {
+                const el = document.getElementById(id);
+                const val = (el.value || '').trim();
+                if (!val) manquants.push(labelFor(id));
+            }
+
+            if (manquants.length > 0) {
+                res.textContent = '⚠️ Impossible d\'imprimer : veuillez compléter tous les champs manquants';
+                res.classList.remove('ok');
+                for (const id of fields) {
+                    const el = document.getElementById(id);
+                    const val = (el.value || '').trim();
+                    if (!val) el.classList.add('error');
+                }
+                return;
+            }
+
+            const {
+                jsPDF
+            } = window.jspdf;
+            const doc = new jsPDF({
+                unit: 'mm',
+                format: 'a4',
+                compress: true
+            });
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 20;
+            const maxWidth = pageWidth - (margin * 2);
+            const lineHeight = 5;
+            let y = margin;
+
+            const nom = sanitize(document.getElementById("nom").value);
+            const prenom = sanitize(document.getElementById("prenom").value);
+
+            // En-tête
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(16);
+            doc.text('Réponses – Fiche Réseaux', margin, y);
+            y += 10;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(11);
+            doc.text(`Nom : ${nom}`, margin, y);
+            y += 6;
+            doc.text(`Prénom : ${prenom}`, margin, y);
+            y += 12;
+
+            const sections = [
+                { title: 'L\'application détecte combien de périphériques sur votre réseau ?', id: 'r1' },
+                { title: 'Quelle est la particularité de toutes les adresses IP sur votre réseau ?', id: 'r2' },
+                { title: 'Complétez les informations du document suivant :', id: 'r3', subFields: [
+                    { title: 'Adresse publique de votre Box :', id: 'r3-1' },
+                    { title: 'Adresse réseau (IP) de votre Box :', id: 'r3-2' },
+                    { title: 'Adresse réseau de votre ordinateur :', id: 'r3-3' },
+                    { title: 'Autres appareils présents sur votre réseau (au moins 3) en donnant le nom des appareils comme une console, imprimante... :', id: 'r3-4' },
+                ]},
+                { title: 'Complétez les informations concernant votre réseau wifi :', id: 'r4', subFields: [
+                    { title: 'Nom de votre réseau :', id: 'r4-1' },
+                    { title: 'Adresse IP :', id: 'r4-2' },
+                    { title: 'Masque :', id: 'r4-3' },
+                    { title: 'Routeur :', id: 'r4-4' },
+                ]},
+                { title: 'Dans l\'ordre donnez le nom et la définition de chacun des appareils, voir fiche de cours page 2.', id: 'r5' },
+                { title: 'Citez d\'autres informations liées à votre réseau que l\'application est capable de connaître :', id: 'r6' }
+            ];
+
+            sections.forEach(section => {
+                // Titre de la section
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(10);
+                y = writeBlock(doc, makeQuestionTitle(section.title), margin, y, maxWidth, lineHeight, pageHeight, margin);
+                y += 2;
+
+                // Réponses
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(9);
+                
+                if (section.subFields) {
+                    // C'est une section avec des sous-questions
+                    section.subFields.forEach(sub => {
+                        y = writeBlock(doc, makeSubQuestionTitle(sub.title), margin, y, maxWidth, lineHeight, pageHeight, margin);
+                        const answer = sanitize(document.getElementById(sub.id).value || '(pas de réponse)');
+                        y = writeBlock(doc, answer, margin + 6, y, maxWidth - 6, lineHeight, pageHeight, margin);
+                        y += 2; // petit espace entre chaque sous-réponse
+                    });
+                    y += 3; // un plus grand espace après la section
+                } else {
+                    // C'est une question simple
+                    const answer = sanitize(document.getElementById(section.id).value || '(pas de réponse)');
+                    y = writeBlock(doc, answer, margin + 3, y, maxWidth - 3, lineHeight, pageHeight, margin);
+                    y += 5;
+                }
+            });
+
+            doc.save(`reponses_${nom.replace(/\s+/g,'_')}.pdf`);
+        });
+    </script>
+</body>
+</html>
